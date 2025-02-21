@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 random.seed(9115)
 TERM = "time"
-NODES = 500
+NODES = 1000
 
 if not Path('wordlist.10000').exists():
     url = "https://www.mit.edu/~ecprice/wordlist.10000"
@@ -25,16 +25,13 @@ def create_file(filename):
                 word = TERM
             else:
                 word = random.choice(words)
-            if extension == 'conf':
-                value = random.randint(100, 1000)
-                print(f"{word}={value}", file=f)
-            else:
-                print(word, file=f)
+            value = random.randint(100, 1000)
+            print(f"{word}={value}", file=f)
 
 def create_files(path: Path):
     how_many = random.randint(3, 15)
     if how_many > 7:
-        how_many = random.randint(7, 20)
+        how_many = random.randint(7, 100)
     for _ in range(how_many):
         create_file(path / random.choice(words))
 
