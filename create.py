@@ -16,10 +16,12 @@ with open('wordlist.10000') as f:
     words = f.readlines()
 words = [w.strip() for w in words if len(w.strip()) >= 4]
 
-def create_file(filename):
+def create_file(filename: Path):
     extension = random.choice(['txt', 'conf'])
+    filename = filename.with_suffix(f".{extension}")
     how_many = random.randint(100, 1000)
-    with open(f"{filename}.{extension}", 'w') as f:
+    
+    with filename.open("w") as f:
         for _ in range(how_many):
             if random.randrange(100) == 0:
                 word = TERM
